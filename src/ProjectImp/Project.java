@@ -1,7 +1,6 @@
-package Project;
+package ProjectImp;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -9,8 +8,8 @@ public class Project {
     private static UserDB users = new UserDB();
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
+    private static RegistrationDB registrations = new RegistrationDB();
     //TODO: Make databases of important information
-    private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void tearDown() {
         users.clear();
@@ -38,7 +37,7 @@ public class Project {
             throw new RuntimeException();
         if (!inProportions(hours))
             throw new RuntimeException();
-        if (!isRegistered(username, password))
+        if (!isAdviserRegistered(username, password))
             throw new RuntimeException();
         Calendar creationDate = getCurrentDate();
         if (existsSameProjectInYear(creationDate, organization))
@@ -53,15 +52,22 @@ public class Project {
         return code;
     }
 
-    public int registerToProject(/* TODO */) {
-        if (!isLoggedIn())
+    public int registerToProject(String username, String password,
+                                 int projectId, ArrayList<String> studentList,
+                                 String academicAdviser) {
+        if (!areNonBlank(username, password,
+                studentList, academicAdviser))
             throw new RuntimeException();
-        if (!atLeastTwoStudents())
+        if (!isUserRegistered(username, password))
             throw new RuntimeException();
-        handleRegisteredMentor();
-        if (!checkIfRegistered())
+        if (!isValidStudentNum(studentList))
             throw new RuntimeException();
-        return 0; //TODO
+        if (isRegisteredAndExisting(projectId))
+            throw new RuntimeException();
+        registrations.add(projectId, username,
+                password, studentList,
+                projects);
+        return projectId;
     }
 
     private boolean areNonBlank(String username, String password,
@@ -82,7 +88,7 @@ public class Project {
         return 200 <= hours && hours <= 300;
     }
 
-    private boolean isRegistered(String username, String password) {
+    private boolean isAdviserRegistered(String username, String password) {
         return advisers.contains(username, password);
     }
 
@@ -105,21 +111,26 @@ public class Project {
     }
 
 
-    //TODO: write all of the helper functions
-    private boolean checkIfRegistered() {
-        return false;
+    private boolean areNonBlank(String username, String password,
+                                ArrayList<String> studentList, String academicAdviser) {
+        String[] args = {username, password, academicAdviser};
+        boolean ret = true;
+        for (String s : args)
+            ret &= (s != null) && (!s.equals(""));
+        ret &= studentList != null;
+        return ret;
     }
 
-    private void handleRegisteredMentor() {
+    private boolean isUserRegistered(String username, String password) {
+        return users.contains(username, password);
     }
 
-    private boolean atLeastTwoStudents() {
-        return false;
+    private boolean isValidStudentNum(ArrayList<String> studentList) {
+        return 2 <= studentList.size() && studentList.size() <= 4;
     }
 
-
-    private boolean isLoggedIn() {
-        return false;
+    private boolean isRegisteredAndExisting(int projectId) {
+        return projects.isSelected(projectId);
     }
 
 }

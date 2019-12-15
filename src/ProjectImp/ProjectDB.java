@@ -1,8 +1,7 @@
-package Project;
+package ProjectImp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class ProjectDB {
     private ArrayList<ProjectEntry> list;
@@ -44,6 +43,20 @@ public class ProjectDB {
     public void clear() {
         list.clear();
     }
+
+    public boolean isSelected(int projectId) {
+        for (ProjectEntry entry : list)
+            if (entry.code == projectId)
+                return entry.selected;
+        throw new RuntimeException(); //throws when project doesn't exist
+    }
+
+    public ProjectEntry getProject(int projectId) {
+        for (ProjectEntry entry : list)
+            if (entry.code == projectId)
+                return entry;
+        return null;
+    }
 }
 
 class ProjectEntry {
@@ -59,6 +72,7 @@ class ProjectEntry {
     public int numberOfHours;
     public Calendar date;
     public int code;
+    public boolean selected;
 
     public ProjectEntry(String username, String password,
                         String firstName, String lastName,
@@ -78,5 +92,6 @@ class ProjectEntry {
         this.numberOfHours = numberOfHours;
         this.date = date;
         this.code = code;
+        this.selected = false;
     }
 }

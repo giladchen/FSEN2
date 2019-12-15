@@ -1,5 +1,6 @@
 package acptTests;
 
+import ProjectImp.Project;
 import acptTests.auxiliary.*;
 import org.junit.*;
 
@@ -40,6 +41,8 @@ public class RegisterToProject extends ProjectTest {
     @After
     public void tearDown() {
         suggestedProject1 = null;
+        //TODO: add in readme
+        Project.tearDown();
     }
 
     @Test
