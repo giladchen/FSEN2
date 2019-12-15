@@ -14,15 +14,15 @@ public class UserDB {
         if (username.equals("") || password.equals(""))
             throw new RuntimeException("username or password are empty");
         for (UserEntry entry : list)
-            if (entry.getUsername().equals(username))
+            if (entry.username.equals(username))
                 throw new RuntimeException("username exists");
         list.add(new UserEntry(username, password));
     }
 
     public String getPassword(String username) {
         for (UserEntry entry : list)
-            if (entry.getUsername().equals(username))
-                return entry.getPassword();
+            if (entry.username.equals(username))
+                return entry.password;
         return "";
     }
 
@@ -32,27 +32,11 @@ public class UserDB {
 }
 
 class UserEntry {
-    private String username;
-    private String password;
+    public String username;
+    public String password;
 
     public UserEntry(String username, String password) {
         this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 

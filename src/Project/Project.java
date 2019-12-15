@@ -2,8 +2,8 @@ package Project;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Random;
 
 public class Project {
     private static UserDB users = new UserDB();
@@ -14,7 +14,7 @@ public class Project {
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
-    public void registerTechnicalAdviser(String username, String password) {
+    public void addTechnicalAdviser(String username, String password) {
         advisers.add(username, password);
     }
 
@@ -36,15 +36,17 @@ public class Project {
             throw new RuntimeException();
         if (!isRegistered(username, password))
             throw new RuntimeException();
-        Date creationDate = getCurrentDate();
-        if (checkSameProjectInYear(creationDate))
+        Calendar creationDate = getCurrentDate();
+        if (existsSameProjectInYear(creationDate, organization))
             throw new RuntimeException();
+        int code = generateCode();
         projects.add(username, password,
                 firstName, lastName,
                 phone, email,
                 organization, projectName,
-                description, hours);
-        return generateCode();
+                description, hours,
+                creationDate, code);
+        return code;
     }
 
     public int registerToProject(/* TODO */) {
@@ -78,15 +80,23 @@ public class Project {
     }
 
     private boolean isRegistered(String username, String password) {
-        return users.contains(username, password);
+        return advisers.contains(username, password);
     }
 
-    private Date getCurrentDate() {
-        return new Date();
+    private Calendar getCurrentDate() {
+        return Calendar.getInstance();
     }
 
-    private boolean checkSameProjectInYear(Date creationDate) {
-        return false;
+    private boolean existsSameProjectInYear(Calendar creationDate, String organization) {
+        return projects.checkIfExistingYear(creationDate, organization);
+    }
+
+    private int generateCode() {
+        Random r = new Random();
+        int code = r.nextInt();
+        while (projects.containsCode(code))
+            code = r.nextInt();
+        return code;
     }
 
 
