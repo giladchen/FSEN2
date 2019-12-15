@@ -8,7 +8,7 @@ import java.util.Date;
 public class Project {
     private static UserDB users = new UserDB();
     private static UserDB advisers = new UserDB();
-    private static A projects;
+    private static ProjectDB projects = new ProjectDB();
     //TODO: Make databases of important information
 
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -36,15 +36,15 @@ public class Project {
             throw new RuntimeException();
         if (!isRegistered(username, password))
             throw new RuntimeException();
-        String creationDate = getCurrentDate();
-        if (checkSameProjectInYear())
+        Date creationDate = getCurrentDate();
+        if (checkSameProjectInYear(creationDate))
             throw new RuntimeException();
-        return 0; //TODO
-    }
-
-    private String getCurrentDate() {
-        Date date = new Date();
-        return dateFormat.format(date);
+        projects.add(username, password,
+                firstName, lastName,
+                phone, email,
+                organization, projectName,
+                description, hours);
+        return generateCode();
     }
 
     public int registerToProject(/* TODO */) {
@@ -79,6 +79,14 @@ public class Project {
 
     private boolean isRegistered(String username, String password) {
         return users.contains(username, password);
+    }
+
+    private Date getCurrentDate() {
+        return new Date();
+    }
+
+    private boolean checkSameProjectInYear(Date creationDate) {
+        return false;
     }
 
 
