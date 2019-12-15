@@ -26,14 +26,11 @@ public class BridgeProxy implements BridgeProject {
             real.addNewStudent(user,password);
     }
 
-
-
     public int addNewProject(String user, String pass, DBSuggestedProjectInfo suggestedProject) {
         if(this.real!=null)
            return real.addNewProject(user,pass,suggestedProject);
         else  return 1;
     }
-
 
     public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
         if(this.real!=null)
@@ -41,8 +38,4 @@ public class BridgeProxy implements BridgeProject {
         else return 1;
 
     }
-
-
-
-
 }
