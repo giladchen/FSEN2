@@ -1,22 +1,25 @@
+package Project;
+
 import acptTests.auxiliary.DBRegisteredProjectInfo;
 import acptTests.auxiliary.DBSuggestedProjectInfo;
 import bridgeProject.BridgeProject;
 
-public class Project implements BridgeProject {
+import java.util.ArrayList;
+
+public class Project {
+    private static ArrayList<Entry> database = new ArrayList<>();
+    //TODO: Make databases of important information
 
 
-    @Override
-    public void registerNewTechnicalAdviser(String user, String password) {
-
+    public void registerTechnicalAdviser(/* TODO */) {
+        //TODO
     }
 
-    @Override
-    public void addNewStudent(String user, String password) {
-
+    public void addStudent(/* TODO */) {
+        //TODO
     }
 
-    @Override
-    public int addNewProject(String user, String pass, DBSuggestedProjectInfo suggestedProject) {
+    public int addProject(/* TODO */) {
         if (!isRegistered() || !isLoggedIn())
             throw new RuntimeException();
         if (!inProportions())
@@ -26,11 +29,10 @@ public class Project implements BridgeProject {
         saveCreationDate();
         if (checkSameProjectInYear())
             throw new RuntimeException();
-        return 0;
+        return 0; //TODO
     }
 
-    @Override
-    public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
+    public int registerToProject(/* TODO */) {
         if (!isLoggedIn())
             throw new RuntimeException();
         if (!atLeastTwoStudents())
@@ -38,9 +40,10 @@ public class Project implements BridgeProject {
         handleRegisteredMentor();
         if (!checkIfRegistered())
             throw new RuntimeException();
-        return 0;
+        return 0; //TODO
     }
 
+    //TODO: write all of the helper functions
     private boolean checkIfRegistered() {
         return false;
     }
