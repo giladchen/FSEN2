@@ -1,6 +1,7 @@
 package acptTests;
 
 
+import Project.Project; //TODO: ADD IN README
 import acptTests.auxiliary.*;
 import org.junit.*;
 
@@ -71,6 +72,8 @@ public class SuggestedProjectTest extends ProjectTest {
         suggestedProject1 = null;
         suggestedProject2 = null;
         suggestedProject3 = null;
+        //TODO: ADD README
+        Project.tearDown();
     }
 
 
@@ -165,8 +168,6 @@ public class SuggestedProjectTest extends ProjectTest {
         suggestedProject2.organization = null;
         projectId1 = this.addProject(DBData.users[1][USER_USER], DBData.users[1][USER_PASS], suggestedProject2);
         assertTrue("Name of the organization is not mandatory", projectId1 > 0);
-
-
     }
 
 
