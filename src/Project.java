@@ -1,5 +1,22 @@
-public class Project {
-    public String add() {
+import acptTests.auxiliary.DBRegisteredProjectInfo;
+import acptTests.auxiliary.DBSuggestedProjectInfo;
+import bridgeProject.BridgeProject;
+
+public class Project implements BridgeProject {
+
+
+    @Override
+    public void registerNewTechnicalAdviser(String user, String password) {
+
+    }
+
+    @Override
+    public void addNewStudent(String user, String password) {
+
+    }
+
+    @Override
+    public int addNewProject(String user, String pass, DBSuggestedProjectInfo suggestedProject) {
         if (!isRegistered() || !isLoggedIn())
             throw new RuntimeException();
         if (!inProportions())
@@ -9,10 +26,11 @@ public class Project {
         saveCreationDate();
         if (checkSameProjectInYear())
             throw new RuntimeException();
-        return "";
+        return 0;
     }
 
-    public String registerTo() {
+    @Override
+    public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
         if (!isLoggedIn())
             throw new RuntimeException();
         if (!atLeastTwoStudents())
@@ -20,7 +38,7 @@ public class Project {
         handleRegisteredMentor();
         if (!checkIfRegistered())
             throw new RuntimeException();
-        return "";
+        return 0;
     }
 
     private boolean checkIfRegistered() {
@@ -57,4 +75,5 @@ public class Project {
     private boolean areNonBlank() {
         return false;
     }
+
 }
