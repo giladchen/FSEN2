@@ -40,6 +40,10 @@ public class ProjectDB {
                 return true;
         return false;
     }
+
+    public void clear() {
+        list.clear();
+    }
 }
 
 class ProjectEntry {

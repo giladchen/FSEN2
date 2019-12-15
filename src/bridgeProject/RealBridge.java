@@ -31,7 +31,7 @@ public class RealBridge implements BridgeProject {
     public int addNewProject(String user, String pass, DBSuggestedProjectInfo suggestedProject) {
         try {
             return project.addProject(user, pass,
-                    suggestedProject.firstName, suggestedProject.firstName,
+                    suggestedProject.firstName, suggestedProject.lastName,
                     suggestedProject.phone, suggestedProject.email,
                     suggestedProject.organization, suggestedProject.projectName,
                     suggestedProject.description, suggestedProject.numberOfHours);

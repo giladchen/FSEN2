@@ -10,9 +10,13 @@ public class Project {
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
     //TODO: Make databases of important information
-
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+    public static void tearDown() {
+        users.clear();
+        advisers.clear();
+        projects.clear();
+    }
 
     public void addTechnicalAdviser(String username, String password) {
         advisers.add(username, password);
@@ -64,14 +68,13 @@ public class Project {
                                 String firstName, String lastName,
                                 String phone, String email,
                                 String projectName, String description) {
-        boolean ret = !username.equals("");
-        ret &= !password.equals("");
-        ret &= !firstName.equals("");
-        ret &= !lastName.equals("");
-        ret &= !phone.equals("");
-        ret &= !email.equals("");
-        ret &= !projectName.equals("");
-        ret &= !description.equals("");
+        String[] args = {username, password,
+                firstName, lastName,
+                phone, email,
+                projectName, description};
+        boolean ret = true;
+        for (String s : args)
+            ret &= (s != null) && (!s.equals(""));
         return ret;
     }
 
@@ -88,14 +91,16 @@ public class Project {
     }
 
     private boolean existsSameProjectInYear(Calendar creationDate, String organization) {
-        return projects.checkIfExistingYear(creationDate, organization);
+        if (organization != null && !organization.equals(""))
+            return projects.checkIfExistingYear(creationDate, organization);
+        return false;
     }
 
     private int generateCode() {
         Random r = new Random();
-        int code = r.nextInt();
+        int code = Math.abs(r.nextInt());
         while (projects.containsCode(code))
-            code = r.nextInt();
+            code = Math.abs(r.nextInt());
         return code;
     }
 

@@ -29,6 +29,10 @@ public class UserDB {
     public boolean contains(String username, String password) {
         return list.contains(new UserEntry(username, password));
     }
+
+    public void clear() {
+        list.clear();
+    }
 }
 
 class UserEntry {
