@@ -1,6 +1,6 @@
 package bridgeProject;
 
-import Project.Project;
+import ProjectImp.Project;
 import acptTests.auxiliary.DBRegisteredProjectInfo;
 import acptTests.auxiliary.DBSuggestedProjectInfo;
 
@@ -43,7 +43,13 @@ public class RealBridge implements BridgeProject {
 
     @Override
     public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
-        //TODO: ADD CALL TO OUR IMPLEMENTATION OF registerToProject
-        return 0;
+        try {
+            return project.registerToProject(user, pass,
+                    registeredProject.projectId, registeredProject.studentList,
+                    registeredProject.academicAdviser);
+        }
+        catch (RuntimeException e) {
+            return 0;
+        }
     }
 }

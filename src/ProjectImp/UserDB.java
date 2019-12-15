@@ -1,4 +1,4 @@
-package Project;
+package ProjectImp;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,6 @@ public class UserDB {
     }
 
     public void add(String username, String password) {
-        //TODO: maybe do nothing instead of throwing exception
         if (username.equals("") || password.equals(""))
             throw new RuntimeException("username or password are empty");
         for (UserEntry entry : list)

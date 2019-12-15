@@ -1,7 +1,7 @@
 package acptTests;
 
 
-import Project.Project; //TODO: ADD IN README
+import ProjectImp.Project; //TODO: ADD IN README
 import acptTests.auxiliary.*;
 import org.junit.*;
 
