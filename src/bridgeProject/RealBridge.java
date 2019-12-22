@@ -11,8 +11,7 @@ public class RealBridge implements BridgeProject {
     public void registerNewTechnicalAdviser(String user, String password) {
         try {
             project.addTechnicalAdviser(user, password);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
 
         }
     }
@@ -21,8 +20,7 @@ public class RealBridge implements BridgeProject {
     public void addNewStudent(String user, String password) {
         try {
             project.addStudent(user, password);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
 
         }
     }
@@ -35,8 +33,7 @@ public class RealBridge implements BridgeProject {
                     suggestedProject.phone, suggestedProject.email,
                     suggestedProject.organization, suggestedProject.projectName,
                     suggestedProject.description, suggestedProject.numberOfHours);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return 0;
         }
     }
@@ -47,8 +44,7 @@ public class RealBridge implements BridgeProject {
             return project.registerToProject(user, pass,
                     registeredProject.projectId, registeredProject.studentList,
                     registeredProject.academicAdviser);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return 0;
         }
     }

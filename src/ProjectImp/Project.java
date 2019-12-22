@@ -9,12 +9,14 @@ public class Project {
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
     private static RegistrationDB registrations = new RegistrationDB();
+    private static WebDB webs = new WebDB();
     //TODO: Make databases of important information
 
     public static void tearDown() {
         users.clear();
         advisers.clear();
         projects.clear();
+        webs.clear();
     }
 
     public void addTechnicalAdviser(String username, String password) {
@@ -43,12 +45,16 @@ public class Project {
         if (existsSameProjectInYear(creationDate, organization))
             throw new RuntimeException();
         int code = generateCode();
+
         projects.add(username, password,
                 firstName, lastName,
                 phone, email,
                 organization, projectName,
                 description, hours,
                 creationDate, code);
+
+        String content = firstName + "\n" + lastName + "\n" + phone + "\n" + email + "\n" + organization + "\n" + projectName + "\n" + description + "\n" + hours;
+        webs.add(code, content);
         return code;
     }
 
@@ -67,6 +73,11 @@ public class Project {
         registrations.add(projectId, username,
                 password, studentList,
                 projects);
+
+        String content = academicAdviser + "\n";
+        for (String student : studentList)
+            content = content + student + "\n";
+        webs.add(projectId, content);
         return projectId;
     }
 
