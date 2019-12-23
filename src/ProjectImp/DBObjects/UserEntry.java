@@ -1,8 +1,13 @@
 package ProjectImp.DBObjects;
 
-class UserEntry {
+import ProjectImp.ObesrverPattern.Observer;
+
+class UserEntry implements Observer {
     public String username;
     public String password;
+    //Q3
+    public ProjectEntry subject;
+    public ListenType listenType;
 
     public UserEntry(String username, String password) {
         this.username = username;
@@ -16,4 +21,34 @@ class UserEntry {
         UserEntry entry = (UserEntry) e;
         return this.username.equals(entry.username) && this.password.equals(entry.password);
     }
+
+    //Q3
+    @Override
+    public void update() {
+        if (subject.getState()) {
+            switch (this.listenType) {
+                case EMAIL:
+                    sendEmail();
+                    break;
+                case TEXT:
+                    sendText();
+                    break;
+                case BOTH:
+                    sendEmail();
+                    sendText();
+                    break;
+                case NONE:
+                    throw new RuntimeException();
+            }
+        }
+    }
+
+    private void sendEmail() {
+        System.out.println("Email sent to " + this.username);
+    }
+
+    private void sendText() {
+        System.out.println("Text sent to " + this.username);
+    }
 }
+

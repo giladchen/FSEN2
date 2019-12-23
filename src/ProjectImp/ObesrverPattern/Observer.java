@@ -1,4 +1,4 @@
-package ProjectImp.Obesrver;
+package ProjectImp.ObesrverPattern;
 
 public interface Observer {
     void update();

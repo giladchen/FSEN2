@@ -1,8 +1,11 @@
 package ProjectImp.DBObjects;
 
+
+import ProjectImp.ObesrverPattern.Subject;
+
 import java.util.Calendar;
 
-class ProjectEntry {
+class ProjectEntry extends Subject {
     public String username;
     public String password;
     public String firstName;
@@ -16,6 +19,8 @@ class ProjectEntry {
     public Calendar date;
     public int code;
     public boolean selected;
+    //Q3
+    public boolean approved;
 
     public ProjectEntry(String username, String password,
                         String firstName, String lastName,
@@ -36,5 +41,33 @@ class ProjectEntry {
         this.date = date;
         this.code = code;
         this.selected = false;
+        this.approved = false;
+    }
+
+    //Q3
+    public void registerStudent(UserEntry user, ListenType listenType) {
+        user.listenType = listenType;
+        attach(user);
+    }
+
+    public void unregisterStudent(UserEntry user) {
+        user.listenType = ListenType.NONE;
+        detach(user);
+    }
+
+    public void approve() {
+        this.approved = true;
+        notifyObservers();
+    }
+
+
+    @Override
+    public boolean getState() {
+        return approved;
+    }
+
+    @Override
+    public void setState(boolean state) {
+        this.approved = state;
     }
 }
