@@ -151,7 +151,7 @@ public class ProjectHandler {
 
     //Q3
     public void registerStudentForEmail(String username, String email,
-                                           int projectCode) {
+                                        int projectCode) {
         projects.registerStudentForEmail(users.getUser(username), email, projectCode);
     }
 
@@ -174,9 +174,7 @@ public class ProjectHandler {
     }
 
     //Q4
-
-
-    private void openWebsite(int code, String content){
+    private void openWebsite(int code, String content) {
         webs.addNewWebsite(code, content);
     }
 
@@ -184,7 +182,7 @@ public class ProjectHandler {
         webs.addContent(projectId, content);
     }
 
-    public int getWeb(int code){
+    public int getWeb(int code) {
         return webs.getWeb(code).webCode;
     }
 
@@ -192,33 +190,33 @@ public class ProjectHandler {
         webs.getWeb(code).blockUser(user, classType);
     }
 
-    public void addStyle(int code, int style){
+    public void addStyle(int code, int style) {
         AbstractWeb oldWeb = webs.getWeb(code);
-        AbstractWeb newWeb = new Style(code,oldWeb.content,oldWeb,style);
+        AbstractWeb newWeb = new Style(code, oldWeb.content, oldWeb, style);
         webs.replaceWebs(oldWeb, newWeb);
     }
 
-    public void addMenu(int code,int menu){
+    public void addMenu(int code, int menu) {
         AbstractWeb oldWeb = webs.getWeb(code);
-        AbstractWeb newWeb = new Menu(code,oldWeb.content,oldWeb,menu);
+        AbstractWeb newWeb = new Menu(code, oldWeb.content, oldWeb, menu);
         webs.replaceWebs(oldWeb, newWeb);
     }
 
-    public void addLogo(int code, String logo){
+    public void addLogo(int code, String logo) {
         AbstractWeb oldWeb = webs.getWeb(code);
-        AbstractWeb newWeb = new Logo(code,oldWeb.content,oldWeb,logo);
+        AbstractWeb newWeb = new Logo(code, oldWeb.content, oldWeb, logo);
         webs.replaceWebs(oldWeb, newWeb);
     }
 
-    public void addLink(int code, String link){
+    public void addLink(int code, String link) {
         AbstractWeb oldWeb = webs.getWeb(code);
-        AbstractWeb newWeb = new Link(code,oldWeb.content,oldWeb,link);
+        AbstractWeb newWeb = new Link(code, oldWeb.content, oldWeb, link);
         webs.replaceWebs(oldWeb, newWeb);
     }
 
-    public void addMusic(int code, String music){
+    public void addMusic(int code, String music) {
         AbstractWeb oldWeb = webs.getWeb(code);
-        AbstractWeb newWeb = new Music(code,oldWeb.content,oldWeb,music);
+        AbstractWeb newWeb = new Music(code, oldWeb.content, oldWeb, music);
         webs.replaceWebs(oldWeb, newWeb);
     }
 }
