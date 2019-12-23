@@ -80,7 +80,17 @@ public class ProjectEntry extends Subject {
     }
 
     private void postGeneralMessage() {
-        //TODO
+        System.out.println(String.format("Posting general message.\n" +
+                        "Hello, the project %s has been approved.\n" +
+                        "The description is %s\n" +
+                        "The proposer is %s %s from organization %s.\n" +
+                        "phone: %s ,email: %s.\n" +
+                        "The project's URL is %s\n",
+                projectName, description, firstName, lastName, organization, phone, email, getURL()));
+    }
+
+    String getURL() {
+        return String.format("https://www.projects.co.il/~%s_%d", projectName, date.get(Calendar.YEAR));
     }
 
 
