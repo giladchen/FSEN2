@@ -1,4 +1,4 @@
-package ProjectImp;
+package ProjectImp.DBObjects;
 
 import ProjectImp.Decorator.AbstractWeb;
 import ProjectImp.Decorator.SimpleWeb;

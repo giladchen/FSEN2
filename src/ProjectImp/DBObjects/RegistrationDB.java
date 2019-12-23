@@ -1,4 +1,4 @@
-package ProjectImp;
+package ProjectImp.DBObjects;
 
 import java.util.ArrayList;
 
@@ -15,17 +15,5 @@ public class RegistrationDB {
         ProjectEntry project = projects.getProject(projectId);
         project.selected = true;
         list.add(new RegistrationEntry(new UserEntry(username, password), project, studentList));
-    }
-}
-
-class RegistrationEntry {
-    public UserEntry user;
-    public ProjectEntry project;
-    ArrayList<String> students;
-
-    public RegistrationEntry(UserEntry user, ProjectEntry project, ArrayList<String> students) {
-        this.user = user;
-        this.project = project;
-        this.students = students;
     }
 }

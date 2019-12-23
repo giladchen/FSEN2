@@ -1,4 +1,4 @@
-package ProjectImp;
+package ProjectImp.DBObjects;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,13 @@ public class UserDB {
         list.add(new UserEntry(username, password));
     }
 
+    public UserEntry getUser(String username) {
+        for (UserEntry entry : list)
+            if (entry.username.equals(username))
+                return entry;
+        return null;
+    }
+
     public String getPassword(String username) {
         for (UserEntry entry : list)
             if (entry.username.equals(username))
@@ -31,23 +38,5 @@ public class UserDB {
 
     public void clear() {
         list.clear();
-    }
-}
-
-class UserEntry {
-    public String username;
-    public String password;
-
-    public UserEntry(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object e) {
-        if (!(e instanceof UserEntry))
-            return false;
-        UserEntry entry = (UserEntry) e;
-        return this.username.equals(entry.username) && this.password.equals(entry.password);
     }
 }

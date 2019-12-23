@@ -1,21 +1,23 @@
 package ProjectImp;
 
+import ProjectImp.DBObjects.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class Project {
+public class ProjectHandler {
     private static UserDB users = new UserDB();
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
     private static RegistrationDB registrations = new RegistrationDB();
     private static WebDB webs = new WebDB();
-    //TODO: Make databases of important information
 
     public static void tearDown() {
         users.clear();
         advisers.clear();
         projects.clear();
+        //Q4
         webs.clear();
     }
 
@@ -54,7 +56,7 @@ public class Project {
                 creationDate, code);
 
         String content = firstName + "\n" + lastName + "\n" + phone + "\n" + email + "\n" + organization + "\n" + projectName + "\n" + description + "\n" + hours;
-        openWebsite(code,content);
+        openWebsite(code, content);
         return code;
     }
 
@@ -73,12 +75,13 @@ public class Project {
         registrations.add(projectId, username,
                 password, studentList,
                 projects);
-
-        String content = academicAdviser + "\n";
+        //Q4
+        StringBuilder content = new StringBuilder();
+        content.append(academicAdviser).append("\n");
         for (String student : studentList)
-            content = content + student + "\n";
+            content.append(student).append("\n");
 
-        addContentToWeb(projectId,content);
+        addContentToWeb(projectId, content);
         return projectId;
     }
 
@@ -153,4 +156,27 @@ public class Project {
         webs.addMoreContent(projectId, content);
     }
 
+    //Q3
+    public void registerStudentForEmail(String username, String email,
+                                           int projectCode) {
+        projects.registerStudentForEmail(users.getUser(username), email, projectCode);
+    }
+
+    public void registerStudentForText(String username, String phoneNumber,
+                                       int projectCode) {
+        projects.registerStudentForText(users.getUser(username), phoneNumber, projectCode);
+    }
+
+    public void registerStudentForBoth(String username, String email,
+                                       String phoneNumber, int projectCode) {
+        projects.registerStudentForBoth(users.getUser(username), email, phoneNumber, projectCode);
+    }
+
+    public void unregisterStudentFromMessages(String username, int projectCode) {
+        projects.unregisterStudentFromMessages(users.getUser(username), projectCode);
+    }
+
+    public void approveProject(int projectCode) {
+        projects.approveProject(projectCode);
+    }
 }
