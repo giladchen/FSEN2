@@ -1,6 +1,7 @@
 package ProjectImp;
 
 import ProjectImp.DBObjects.*;
+import ProjectImp.WebDecorator.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,7 +82,7 @@ public class ProjectHandler {
         for (String student : studentList)
             content.append(student).append("\n");
 
-        addContentToWeb(projectId, content);
+        addContentToWeb(projectId, String.valueOf(content));
         return projectId;
     }
 
@@ -148,14 +149,6 @@ public class ProjectHandler {
         return projects.isSelected(projectId);
     }
 
-    private void openWebsite(int code, String content){
-        webs.addNewWebsite(code, content);
-    }
-
-    private void addContentToWeb(int projectId, String content) {
-        webs.addMoreContent(projectId, content);
-    }
-
     //Q3
     public void registerStudentForEmail(String username, String email,
                                            int projectCode) {
@@ -178,5 +171,54 @@ public class ProjectHandler {
 
     public void approveProject(int projectCode) {
         projects.approveProject(projectCode);
+    }
+
+    //Q4
+
+
+    private void openWebsite(int code, String content){
+        webs.addNewWebsite(code, content);
+    }
+
+    private void addContentToWeb(int projectId, String content) {
+        webs.addContent(projectId, content);
+    }
+
+    public int getWeb(int code){
+        return webs.getWeb(code).webCode;
+    }
+
+    public void blockUser(int code, String user, String classType) {
+        webs.getWeb(code).blockUser(user, classType);
+    }
+
+    public void addStyle(int code, int style){
+        AbstractWeb oldWeb = webs.getWeb(code);
+        AbstractWeb newWeb = new Style(code,oldWeb.content,oldWeb,style);
+        webs.replaceWebs(oldWeb, newWeb);
+    }
+
+    public void addMenu(int code,int menu){
+        AbstractWeb oldWeb = webs.getWeb(code);
+        AbstractWeb newWeb = new Menu(code,oldWeb.content,oldWeb,menu);
+        webs.replaceWebs(oldWeb, newWeb);
+    }
+
+    public void addLogo(int code, String logo){
+        AbstractWeb oldWeb = webs.getWeb(code);
+        AbstractWeb newWeb = new Logo(code,oldWeb.content,oldWeb,logo);
+        webs.replaceWebs(oldWeb, newWeb);
+    }
+
+    public void addLink(int code, String link){
+        AbstractWeb oldWeb = webs.getWeb(code);
+        AbstractWeb newWeb = new Link(code,oldWeb.content,oldWeb,link);
+        webs.replaceWebs(oldWeb, newWeb);
+    }
+
+    public void addMusic(int code, String music){
+        AbstractWeb oldWeb = webs.getWeb(code);
+        AbstractWeb newWeb = new Music(code,oldWeb.content,oldWeb,music);
+        webs.replaceWebs(oldWeb, newWeb);
     }
 }

@@ -1,11 +1,11 @@
-package ProjectImp.Decorator;
+package ProjectImp.WebDecorator;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class AbstractWeb {
     List<String> blockedUsers;
-    String content;
+    public String content;
     public int webCode;
 
     public AbstractWeb(int code, String cont) {
@@ -16,15 +16,13 @@ public abstract class AbstractWeb {
 
     public abstract String getContent(String user);
 
-    public void addMoreContent(String cont) {
+    public abstract void blockUser(String user, String classType);
+
+    boolean isUserBlocked(String user){
+        return blockedUsers.contains(user);
+    }
+
+    public void addContent(String cont) {
         content = content + "\n" + cont;
-    }
-
-    public void blockUser(String user) {
-        blockedUsers.add(user);
-    }
-
-    public void unblockUser(String user) {
-        blockedUsers.remove(user);
     }
 }

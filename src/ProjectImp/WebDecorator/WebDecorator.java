@@ -1,4 +1,4 @@
-package ProjectImp.Decorator;
+package ProjectImp.WebDecorator;
 
 public abstract class WebDecorator extends AbstractWeb {
     AbstractWeb web;
