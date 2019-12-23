@@ -54,7 +54,7 @@ public class Project {
                 creationDate, code);
 
         String content = firstName + "\n" + lastName + "\n" + phone + "\n" + email + "\n" + organization + "\n" + projectName + "\n" + description + "\n" + hours;
-        webs.add(code, content);
+        openWebsite(code,content);
         return code;
     }
 
@@ -77,7 +77,8 @@ public class Project {
         String content = academicAdviser + "\n";
         for (String student : studentList)
             content = content + student + "\n";
-        webs.add(projectId, content);
+
+        addContentToWeb(projectId,content);
         return projectId;
     }
 
@@ -142,6 +143,14 @@ public class Project {
 
     private boolean isRegisteredAndExisting(int projectId) {
         return projects.isSelected(projectId);
+    }
+
+    private void openWebsite(int code, String content){
+        webs.addNewWebsite(code, content);
+    }
+
+    private void addContentToWeb(int projectId, String content) {
+        webs.addMoreContent(projectId, content);
     }
 
 }

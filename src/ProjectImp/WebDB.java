@@ -16,7 +16,7 @@ public class WebDB {
         webs.clear();
     }
 
-    public void add(int code, String content) {
+    public void addNewWebsite(int code, String content) {
         webs.add(new SimpleWeb(code, content));
     }
 
