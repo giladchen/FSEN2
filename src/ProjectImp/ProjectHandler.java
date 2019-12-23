@@ -1,10 +1,12 @@
 package ProjectImp;
 
+import ProjectImp.DBObjects.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class Project {
+public class ProjectHandler {
     private static UserDB users = new UserDB();
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
@@ -152,4 +154,27 @@ public class Project {
         return projects.isSelected(projectId);
     }
 
+    //Q3
+    public void registerStudentForEmail(String username, String email,
+                                           int projectCode) {
+        projects.registerStudentForEmail(users.getUser(username), email, projectCode);
+    }
+
+    public void registerStudentForText(String username, String phoneNumber,
+                                       int projectCode) {
+        projects.registerStudentForText(users.getUser(username), phoneNumber, projectCode);
+    }
+
+    public void registerStudentForBoth(String username, String email,
+                                       String phoneNumber, int projectCode) {
+        projects.registerStudentForBoth(users.getUser(username), email, phoneNumber, projectCode);
+    }
+
+    public void unregisterStudentFromMessages(String username, int projectCode) {
+        projects.unregisterStudentFromMessages(users.getUser(username), projectCode);
+    }
+
+    public void approveProject(int projectCode) {
+        projects.approveProject(projectCode);
+    }
 }
