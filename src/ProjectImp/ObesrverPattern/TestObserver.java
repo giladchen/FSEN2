@@ -1,6 +1,5 @@
 package ProjectImp.ObesrverPattern;
 
-import ProjectImp.DBObjects.ListenType;
 import ProjectImp.ProjectHandler;
 
 public class TestObserver {
@@ -25,11 +24,11 @@ public class TestObserver {
                 "proposers2 INC", "p2",
                 "project 2", 300);
 
-        projectHandler.registerStudentForMessages("u1", p1Code, ListenType.EMAIL);
-        projectHandler.registerStudentForMessages("u2", p1Code, ListenType.BOTH);
-        projectHandler.registerStudentForMessages("u3", p1Code, ListenType.BOTH);
-        projectHandler.registerStudentForMessages("u4", p2Code, ListenType.TEXT);
+        projectHandler.registerStudentForEmail("u1", "u1@gmail.com", p1Code);
+        projectHandler.registerStudentForBoth("u2", "u2@gmail.com", "0501112222", p1Code);
+        projectHandler.registerStudentForText("u4", "0546667777", p2Code);
 
+        projectHandler.registerStudentForBoth("u3", "u3@gmail.com", "0523334444", p1Code);
         projectHandler.unregisterStudentFromMessages("u3", p1Code);
 
         projectHandler.approveProject(p1Code);

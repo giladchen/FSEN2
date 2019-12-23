@@ -8,6 +8,8 @@ public class UserEntry implements Observer {
     //Q3
     public ProjectEntry subject;
     public ListenType listenType;
+    public String email;
+    public String phoneNum;
 
     public UserEntry(String username, String password) {
         this.username = username;
@@ -44,11 +46,15 @@ public class UserEntry implements Observer {
     }
 
     private void sendEmail() {
-        System.out.println(this.subject.projectName + " approved. Email sent to " + this.username);
+        String ret = String.format("Sending mail to: %s\nHello %s.\nThe project %s was approved.\n",
+                this.email, this.username, this.subject.projectName);
+        System.out.println(ret);
     }
 
     private void sendText() {
-        System.out.println(this.subject.projectName + " approved. Text sent to " + this.username);
+        String ret = String.format("Sending text message to: %s\nHello %s.\nThe project %s was approved.\n",
+                this.phoneNum, this.username, this.subject.projectName);
+        System.out.println(ret);
     }
 }
 

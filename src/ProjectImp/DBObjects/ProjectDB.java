@@ -58,18 +58,25 @@ public class ProjectDB {
         return null;
     }
 
-    public void registerStudentForMessages(UserEntry user, int projectCode, ListenType listenType) {
-        ProjectEntry projectEntry = getProject(projectCode);
-        if (user == null || projectEntry == null)
-            throw new RuntimeException();
-        projectEntry.registerStudent(user, listenType);
+    //Q3
+    public void registerStudentForEmail(UserEntry user, String email, int projectCode) {
+        registerForMessages(user, email, "", projectCode, ListenType.EMAIL);
     }
 
-    public void unregisterStudentFromMessages(UserEntry user, int projectCode) {
+    public void registerStudentForText(UserEntry user, String phoneNumber, int projectCode) {
+        registerForMessages(user, "", phoneNumber, projectCode, ListenType.TEXT);
+    }
+
+    public void registerStudentForBoth(UserEntry user, String email, String phoneNumber, int projectCode) {
+        registerForMessages(user, email, phoneNumber, projectCode, ListenType.BOTH);
+    }
+
+    private void registerForMessages(UserEntry user, String email,
+                                     String phoneNumber, int projectCode, ListenType listenType) {
         ProjectEntry projectEntry = getProject(projectCode);
         if (user == null || projectEntry == null)
             throw new RuntimeException();
-        projectEntry.unregisterStudent(user);
+        projectEntry.registerStudent(user, email, phoneNumber, listenType);
     }
 
     public void approveProject(int projectCode) {
@@ -77,6 +84,13 @@ public class ProjectDB {
         if (projectEntry == null)
             throw new RuntimeException();
         projectEntry.approve();
+    }
+
+    public void unregisterStudentFromMessages(UserEntry user, int projectCode) {
+        ProjectEntry projectEntry = getProject(projectCode);
+        if (user == null || projectEntry == null)
+            throw new RuntimeException();
+        projectEntry.unregisterStudent(user);
     }
 }
 

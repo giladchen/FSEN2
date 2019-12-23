@@ -45,21 +45,42 @@ public class ProjectEntry extends Subject {
     }
 
     //Q3
-    public void registerStudent(UserEntry user, ListenType listenType) {
+    public void registerStudent(UserEntry user, String email, String phoneNumber, ListenType listenType) {
         user.listenType = listenType;
         user.subject = this;
+        switch (listenType) {
+            case EMAIL:
+                user.email = email;
+                break;
+            case TEXT:
+                user.phoneNum = phoneNumber;
+                break;
+            case BOTH:
+                user.email = email;
+                user.phoneNum = phoneNumber;
+                break;
+            case NONE:
+                throw new RuntimeException();
+        }
         attach(user);
     }
 
     public void unregisterStudent(UserEntry user) {
         user.listenType = ListenType.NONE;
         user.subject = null;
+        user.email = null;
+        user.phoneNum = null;
         detach(user);
     }
 
     public void approve() {
         this.approved = true;
         notifyObservers();
+        postGeneralMessage();
+    }
+
+    private void postGeneralMessage() {
+        //TODO
     }
 
 
