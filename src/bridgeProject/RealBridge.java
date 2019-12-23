@@ -1,16 +1,16 @@
 package bridgeProject;
 
-import ProjectImp.Project;
+import ProjectImp.ProjectHandler;
 import acptTests.auxiliary.DBRegisteredProjectInfo;
 import acptTests.auxiliary.DBSuggestedProjectInfo;
 
 public class RealBridge implements BridgeProject {
-    Project project = new Project();
+    ProjectHandler projectHandler = new ProjectHandler();
 
     @Override
     public void registerNewTechnicalAdviser(String user, String password) {
         try {
-            project.addTechnicalAdviser(user, password);
+            projectHandler.addTechnicalAdviser(user, password);
         }
         catch (RuntimeException e) {
 
@@ -20,7 +20,7 @@ public class RealBridge implements BridgeProject {
     @Override
     public void addNewStudent(String user, String password) {
         try {
-            project.addStudent(user, password);
+            projectHandler.addStudent(user, password);
         }
         catch (RuntimeException e) {
 
@@ -30,7 +30,7 @@ public class RealBridge implements BridgeProject {
     @Override
     public int addNewProject(String user, String pass, DBSuggestedProjectInfo suggestedProject) {
         try {
-            return project.addProject(user, pass,
+            return projectHandler.addProject(user, pass,
                     suggestedProject.firstName, suggestedProject.lastName,
                     suggestedProject.phone, suggestedProject.email,
                     suggestedProject.organization, suggestedProject.projectName,
@@ -44,7 +44,7 @@ public class RealBridge implements BridgeProject {
     @Override
     public int registerToProject(String user, String pass, DBRegisteredProjectInfo registeredProject) {
         try {
-            return project.registerToProject(user, pass,
+            return projectHandler.registerToProject(user, pass,
                     registeredProject.projectId, registeredProject.studentList,
                     registeredProject.academicAdviser);
         }

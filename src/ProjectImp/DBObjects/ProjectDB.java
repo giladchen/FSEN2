@@ -57,5 +57,26 @@ public class ProjectDB {
                 return entry;
         return null;
     }
+
+    public void registerStudentForMessages(UserEntry user, int projectCode, ListenType listenType) {
+        ProjectEntry projectEntry = getProject(projectCode);
+        if (user == null || projectEntry == null)
+            throw new RuntimeException();
+        projectEntry.registerStudent(user, listenType);
+    }
+
+    public void unregisterStudentFromMessages(UserEntry user, int projectCode) {
+        ProjectEntry projectEntry = getProject(projectCode);
+        if (user == null || projectEntry == null)
+            throw new RuntimeException();
+        projectEntry.unregisterStudent(user);
+    }
+
+    public void approveProject(int projectCode) {
+        ProjectEntry projectEntry = getProject(projectCode);
+        if (projectEntry == null)
+            throw new RuntimeException();
+        projectEntry.approve();
+    }
 }
 

@@ -1,7 +1,5 @@
 package acptTests;
 
-
-import ProjectImp.Project; //TODO: ADD IN README
 import acptTests.auxiliary.*;
 import org.junit.*;
 
@@ -72,8 +70,8 @@ public class SuggestedProjectTest extends ProjectTest {
         suggestedProject1 = null;
         suggestedProject2 = null;
         suggestedProject3 = null;
-        //TODO: ADD README
-        Project.tearDown();
+        //added in readme
+        ProjectImp.ProjectHandler.tearDown();
     }
 
 

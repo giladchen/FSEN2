@@ -1,14 +1,12 @@
 package ProjectImp;
 
-import ProjectImp.DBObjects.ProjectDB;
-import ProjectImp.DBObjects.RegistrationDB;
-import ProjectImp.DBObjects.UserDB;
+import ProjectImp.DBObjects.*;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class Project {
+public class ProjectHandler {
     private static UserDB users = new UserDB();
     private static UserDB advisers = new UserDB();
     private static ProjectDB projects = new ProjectDB();
@@ -137,4 +135,19 @@ public class Project {
         return projects.isSelected(projectId);
     }
 
+    //Q3
+    public void registerStudentForMessages(String username, int projectCode,
+                                           ListenType listenType) {
+        if (listenType == ListenType.NONE)
+            throw new RuntimeException();
+        projects.registerStudentForMessages(users.getUser(username), projectCode, listenType);
+    }
+
+    public void unregisterStudentFromMessages(String username, int projectCode) {
+        projects.unregisterStudentFromMessages(users.getUser(username), projectCode);
+    }
+
+    public void approveProject(int projectCode) {
+        projects.approveProject(projectCode);
+    }
 }

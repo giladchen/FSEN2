@@ -2,7 +2,7 @@ package ProjectImp.DBObjects;
 
 import ProjectImp.ObesrverPattern.Observer;
 
-class UserEntry implements Observer {
+public class UserEntry implements Observer {
     public String username;
     public String password;
     //Q3
@@ -44,11 +44,11 @@ class UserEntry implements Observer {
     }
 
     private void sendEmail() {
-        System.out.println("Email sent to " + this.username);
+        System.out.println(this.subject.projectName + " approved. Email sent to " + this.username);
     }
 
     private void sendText() {
-        System.out.println("Text sent to " + this.username);
+        System.out.println(this.subject.projectName + " approved. Text sent to " + this.username);
     }
 }
 

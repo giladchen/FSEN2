@@ -41,7 +41,7 @@ public class RegisterToProject extends ProjectTest {
     public void tearDown() {
         suggestedProject1 = null;
         //added in readme
-        ProjectImp.Project.tearDown();
+        ProjectImp.ProjectHandler.tearDown();
     }
 
     @Test

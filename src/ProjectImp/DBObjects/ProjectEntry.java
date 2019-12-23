@@ -5,7 +5,7 @@ import ProjectImp.ObesrverPattern.Subject;
 
 import java.util.Calendar;
 
-class ProjectEntry extends Subject {
+public class ProjectEntry extends Subject {
     public String username;
     public String password;
     public String firstName;
@@ -47,11 +47,13 @@ class ProjectEntry extends Subject {
     //Q3
     public void registerStudent(UserEntry user, ListenType listenType) {
         user.listenType = listenType;
+        user.subject = this;
         attach(user);
     }
 
     public void unregisterStudent(UserEntry user) {
         user.listenType = ListenType.NONE;
+        user.subject = null;
         detach(user);
     }
 

@@ -1,5 +1,5 @@
 package ProjectImp.DBObjects;
 
-enum ListenType {
+public enum ListenType {
     EMAIL, TEXT, BOTH, NONE
 }

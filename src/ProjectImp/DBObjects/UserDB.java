@@ -18,6 +18,13 @@ public class UserDB {
         list.add(new UserEntry(username, password));
     }
 
+    public UserEntry getUser(String username) {
+        for (UserEntry entry : list)
+            if (entry.username.equals(username))
+                return entry;
+        return null;
+    }
+
     public String getPassword(String username) {
         for (UserEntry entry : list)
             if (entry.username.equals(username))
