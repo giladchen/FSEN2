@@ -10,7 +10,7 @@ public class RealBridge implements BridgeProject {
     @Override
     public void registerNewTechnicalAdviser(String user, String password) {
         try {
-            project.addTechnicalAdviser(user, password);
+            projectHandler.addTechnicalAdviser(user, password);
         } catch (RuntimeException e) {
 
         }
@@ -19,7 +19,7 @@ public class RealBridge implements BridgeProject {
     @Override
     public void addNewStudent(String user, String password) {
         try {
-            project.addStudent(user, password);
+            projectHandler.addStudent(user, password);
         } catch (RuntimeException e) {
 
         }

@@ -92,9 +92,4 @@ public class ProjectDB {
             throw new RuntimeException();
         projectEntry.unregisterStudent(user);
     }
-<<<<<<< HEAD:src/ProjectImp/ProjectDB.java
 }
-=======
-}
-
->>>>>>> gilad:src/ProjectImp/DBObjects/ProjectDB.java

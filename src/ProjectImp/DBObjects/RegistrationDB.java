@@ -17,18 +17,3 @@ public class RegistrationDB {
         list.add(new RegistrationEntry(new UserEntry(username, password), project, studentList));
     }
 }
-
-<<<<<<< HEAD:src/ProjectImp/RegistrationDB.java
-class RegistrationEntry {
-    public UserEntry user;
-    public ProjectEntry project;
-    ArrayList<String> students;
-
-    public RegistrationEntry(UserEntry user, ProjectEntry project, ArrayList<String> students) {
-        this.user = user;
-        this.project = project;
-        this.students = students;
-    }
-}
-=======
->>>>>>> gilad:src/ProjectImp/DBObjects/RegistrationDB.java
