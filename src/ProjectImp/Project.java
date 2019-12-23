@@ -1,5 +1,9 @@
 package ProjectImp;
 
+import ProjectImp.DBObjects.ProjectDB;
+import ProjectImp.DBObjects.RegistrationDB;
+import ProjectImp.DBObjects.UserDB;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
